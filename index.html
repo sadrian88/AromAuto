@@ -90,7 +90,7 @@
         #backToTopFooter:hover {
         background: #e5e5e5;
         }
-        
+
         @media (max-width: 768px) {
         #backToTopFooter {
             position: fixed !important;
@@ -99,10 +99,7 @@
             top: auto !important;
             z-index: 999;
         }
-        }
 
-        @media (max-width: 640px) {
-        /* Rezolvă z-index pentru meniul mobil ca să nu acopere header-ul */
         #mobileMenu {
             position: absolute;
             top: 100%;
@@ -112,23 +109,18 @@
             border-radius: 8px;
         }
 
-        /* Face butonul Descoperă colecția full width și margin jos */
         section#home .flex a {
             width: 100%;
             text-align: center;
             margin-bottom: 1.5rem;
         }
+        }
 
-        /* Pune butonul back-to-top într-un loc mai potrivit (jos/dreapta) */
-        #backToTopFooter {
-            position: fixed;
-            bottom: 1.5rem;
-            right: 1.5rem;
-            top: auto !important;
-            z-index: 900;
+        body {
+        position: relative;
+        z-index: 0;
         }
-        }
-        
+
     </style>
     
 </head>
