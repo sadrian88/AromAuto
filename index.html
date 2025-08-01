@@ -7,37 +7,143 @@
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="main.css">
-    
+    <style>
+        /* Custom CSS */
+        .hero-pattern {
+            background-image: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0.8) 90%);
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .scent-wave {
+            animation: wave 8s linear infinite;
+        }
+        
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            display: block;
+            margin: 60px auto;
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 8px;
+            box-shadow: 0 0 15px #fff;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #ccc;
+        }
+        
+        /* Mobile specific styles */
+        @media (max-width: 640px) {
+            .hero-image {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .hero-decoration {
+                display: none;
+            }
+            
+            .product-card {
+                min-height: 180px;
+            }
+            
+            .modal-content {
+                max-width: 95%;
+                max-height: 80vh;
+            }
+            
+            .close {
+                top: 15px;
+                right: 25px;
+                font-size: 35px;
+            }
+        }
+        
+        /* Product card hover effect */
+        .product-card:hover img {
+            transform: scale(1.05);
+        }
+
+        #backToTopFooter {
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        #backToTopFooter:hover {
+            background: #e5e5e5;
+        }
+    </style>
 </head>
 <body class="font-sans bg-gray-50">
-   <!-- Navigation -->
-   <nav class="bg-white shadow-lg sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex items-center">
-                <div class="flex-shrink-0 flex items-center">
-                    <img src="images/bradut.png" alt="Logo" class="w-10 h-10 mr-2">
-                    <span class="text-xl font-bold text-gray-900">AromAuto</span>
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <img src="images/bradut.png" alt="Logo" class="w-10 h-10 mr-2">
+                        <span class="text-xl font-bold text-gray-900">AromAuto</span>
+                    </div>
                 </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Acasă</a>
+                    <a href="#products" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Produse</a>
+                    <a href="#about" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Despre</a>
+                    <a href="#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Contact</a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <button id="mobileMenuButton" class="md:hidden ml-4 text-gray-500 hover:text-gray-900">
+                      <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                    <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium inline-flex items-center">
+                      <i class="fas fa-shopping-cart mr-2"></i>Comandă
+                    </a>
+                  </div>
             </div>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Acasă</a>
-                <a href="#products" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Produse</a>
-                <a href="#about" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Despre</a>
-                <a href="#contact" class="text-gray-900 hover:text-blue-600 px-3 py-2 font-medium">Contact</a>
+            <!-- Mobile Menu (hidden by default) -->
+            <div id="mobileMenu" class="md:hidden hidden bg-white px-2 pb-3 pt-2">
+                <a href="#home" class="block px-3 py-2 text-gray-900 hover:text-blue-600">Acasă</a>
+                <a href="#products" class="block px-3 py-2 text-gray-900 hover:text-blue-600">Produse</a>
+                <a href="#about" class="block px-3 py-2 text-gray-900 hover:text-blue-600">Despre</a>
+                <a href="#contact" class="block px-3 py-2 text-gray-900 hover:text-blue-600">Contact</a>
             </div>
-            <div class="flex items-center space-x-4">
-                <button class="md:hidden ml-4 text-gray-500 hover:text-gray-900">
-                  <i class="fas fa-bars text-2xl"></i>
-                </button>
-                <a href="#contact" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md font-medium inline-flex items-center">
-                  <i class="fas fa-shopping-cart mr-2"></i>Comandă
-                </a>
-              </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <!-- Hero Section -->
     <section id="home" class="hero-pattern bg-gradient-to-r from-blue-900 to-purple-900 text-white py-20 md:py-32">
@@ -46,7 +152,6 @@
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">Breathe Life Into Your Ride</h1>
                 <p class="text-xl mb-8">Odorizante auto imprimate 3D, create pe stilul tău. Design modern și arome care durează.</p>
                 <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <!--<a href="#design" class="bg-white text-blue-900 hover:bg-gray-100 px-6 py-3 rounded-md font-bold text-center">Design Yours</a>-->
                     <a href="#products" class="border-2 border-white text-white hover:bg-white hover:text-blue-900 px-6 py-3 rounded-md font-bold text-center">Descoperă colecția</a>
                 </div>
             </div>
@@ -138,7 +243,6 @@
                         class="w-full h-full object-cover transition duration-500">
                 </div>
 
-        
                 <!-- Product 6 -->
                 <div class="product-card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition duration-300">
                     <img src="images/6.png" 
@@ -162,183 +266,59 @@
          </div>
          <!-- Modal container (ascuns inițial) -->
          <div id="imageModal" class="modal">
+            <span class="close">&times;</span>
             <img class="modal-content" id="modalImg">
           </div>   
     </section>
 
     <!-- Scent Options Section -->
-<section class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl font-bold text-gray-900 mb-4">Selecția Noastră de Arome</h2>
-            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Alege aroma care ți se potrivește</p>
-        </div>
-        <div class="relative overflow-hidden h-48 mb-12 rounded-xl">
-            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600"></div>
-            <div class="scent-wave-container absolute inset-0 flex items-center overflow-hidden">
-                <div class="scent-wave flex whitespace-nowrap items-center" id="scentsWave">
-                </div>
-            </div>
-        </div>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-yellow-300 to-sky-300 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">Piña Colada</h4>
-                <p class="text-sm text-gray-600">Exotic & Răcoritor</p>
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-gray-700 to-blue-800 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">Black Ice</h4>
-                <p class="text-sm text-gray-600">Răcoritor & Masculin</p>
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-gray-400 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">New Car</h4>
-                <p class="text-sm text-gray-600">Proaspăt & Clasic</p>
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">Vanillaroma</h4>
-                <p class="text-sm text-gray-600">Cald & Reconfortant</p>
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-white to-yellow-100 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">Coconut</h4>
-                <p class="text-sm text-gray-600">Catifelat & Tropical</p>
-            </div>
-            <div class="bg-gray-100 p-4 rounded-lg text-center">
-                <div class="w-12 h-12 bg-gradient-to-br from-green-200 to-green-500 rounded-full mx-auto mb-2"></div>
-                <h4 class="font-bold">Green Apple</h4>
-                <p class="text-sm text-gray-600">Crocanți & Fructat</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Custom Design Section 
-    <section id="design" class="py-16 bg-gray-900 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl font-bold mb-6">Design Your Own 3D Air Freshener</h2>
-                    <p class="text-xl mb-8">Our custom design tool lets you create a truly unique air freshener that reflects your personality and style.</p>
-                    <ul class="space-y-4 mb-8">
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
-                            <span>Upload your own 3D model or choose from our templates</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
-                            <span>Select from 16 color options and multiple material finishes</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-check-circle text-green-400 mt-1 mr-3"></i>
-                            <span>Mix and match fragrances to create your perfect scent</span>
-                        </li>
-                    </ul>
-                    <button class="bg-white text-gray-900 hover:bg-gray-200 px-6 py-3 rounded-md font-bold">
-                        Start Designing
-                    </button>
-                </div>
-                <div class="md:w-1/2 relative">
-                    <div class="bg-gray-800 p-6 rounded-xl shadow-lg">
-                        <div class="flex justify-between mb-4">
-                            <h3 class="font-bold">Design Preview</h3>
-                            <div class="flex space-x-2">
-                                <button class="w-6 h-6 bg-blue-500 rounded"></button>
-                                <button class="w-6 h-6 bg-red-500 rounded"></button>
-                                <button class="w-6 h-6 bg-green-500 rounded"></button>
-                                <button class="w-6 h-6 bg-yellow-500 rounded"></button>
-                            </div>
-                        </div>
-                        <div class="bg-gray-700 rounded-lg h-64 flex items-center justify-center">
-                            <i class="fas fa-car text-6xl text-gray-600"></i>
-                        </div>
-                        <div class="mt-4">
-                            <h4 class="font-bold mb-2">Select Fragrance</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Ocean</button>
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Vanilla</button>
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Pine</button>
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Leather</button>
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Citrus</button>
-                                <button class="bg-gray-700 hover:bg-gray-600 py-2 px-3 rounded text-sm">Linen</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!-- Testimonials
-    <section class="py-16 bg-gray-50">
+    <section class="py-16 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Join thousands of satisfied customers who love their 3D Scent air fresheners</p>
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">Selecția Noastră de Arome</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">Alege aroma care ți se potrivește</p>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-white p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">"The geometric design is stunning and the scent lasts forever. I get compliments every time someone gets in my car!"</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                        <div>
-                            <h4 class="font-bold">Sarah J.</h4>
-                            <p class="text-sm text-gray-600">Verified Buyer</p>
-                        </div>
+            <div class="relative overflow-hidden h-48 mb-12 rounded-xl">
+                <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+                <div class="scent-wave-container absolute inset-0 flex items-center overflow-hidden">
+                    <div class="scent-wave flex whitespace-nowrap items-center" id="scentsWave">
                     </div>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">"I customized one with my initials and the leather scent. It's the perfect combination of style and function for my luxury car."</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                        <div>
-                            <h4 class="font-bold">Michael T.</h4>
-                            <p class="text-sm text-gray-600">Verified Buyer</p>
-                        </div>
-                    </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-300 to-sky-300 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">Piña Colada</h4>
+                    <p class="text-sm text-gray-600">Exotic & Răcoritor</p>
                 </div>
-                <div class="bg-white p-8 rounded-xl shadow-sm">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star-half-alt"></i>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 mb-6">"The 3D printing quality is incredible. Much better than those flat cardboard air fresheners. Worth every penny!"</p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-gray-300 rounded-full mr-4"></div>
-                        <div>
-                            <h4 class="font-bold">Jessica L.</h4>
-                            <p class="text-sm text-gray-600">Verified Buyer</p>
-                        </div>
-                    </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-gray-700 to-blue-800 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">Black Ice</h4>
+                    <p class="text-sm text-gray-600">Răcoritor & Masculin</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-blue-900 to-gray-400 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">New Car</h4>
+                    <p class="text-sm text-gray-600">Proaspăt & Clasic</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-100 to-yellow-300 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">Vanillaroma</h4>
+                    <p class="text-sm text-gray-600">Cald & Reconfortant</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-white to-yellow-100 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">Coconut</h4>
+                    <p class="text-sm text-gray-600">Catifelat & Tropical</p>
+                </div>
+                <div class="bg-gray-100 p-4 rounded-lg text-center">
+                    <div class="w-12 h-12 bg-gradient-to-br from-green-200 to-green-500 rounded-full mx-auto mb-2"></div>
+                    <h4 class="font-bold">Green Apple</h4>
+                    <p class="text-sm text-gray-600">Crocanți & Fructat</p>
                 </div>
             </div>
         </div>
-    </section>-->
+    </section>
 
     <!-- About Section -->
     <section id="about" class="py-16 bg-gray-50">
@@ -352,23 +332,6 @@
                     <img src="images/11.png" 
                          alt="3D Printing Process" class="rounded-lg shadow-xl w-full">
                 </div>
-                <!-- Video Container 
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <div class="relative pt-[56.25%] rounded-xl overflow-hidden shadow-lg bg-black">
-                            Video Element 
-                        <video id="productVideo" class="absolute inset-0 w-full h-full object-cover">
-                            <source src="images/12.mp4" type="video/mp4">
-                            Browser-ul nu suportă acest format video.
-                        </video>
-                        
-                            Play Button Overlay 
-                        <div id="videoOverlay" class="absolute inset-0 flex items-center justify-center bg-black/30">
-                            <button id="playButton" class="bg-blue-600 hover:bg-blue-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl transition-transform hover:scale-110">
-                                <i class="fas fa-play text-xl"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>-->
                 <div class="md:w-1/2">
                     <h2 class="text-3xl font-bold text-gray-900 mb-6">Despre Noi</h2>
                     <p class="text-gray-600 mb-4">AromAuto transformă experiența la volan prin odorizante auto personalizate, fabricate cu tehnologie 3D și arome atent selecționate. Fiecare produs este creat pentru a reflecta stilul tău, oferind un parfum memorabil și un aspect modern. Ne concentrăm pe durabilitate și inovație, livrând produse originale pentru iubitorii de brăduți parfumați care își doresc mai mult decât un simplu accesoriu auto.
@@ -383,91 +346,78 @@
         </div>
     </section>
 
-    <!-- CTA Section 
-    <section class="py-16 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-3xl font-bold mb-6">Ready to Transform Your Car's Ambiance?</h2>
-            <p class="text-xl mb-8 max-w-3xl mx-auto">Join our customers who've upgraded their driving experience with our premium 3D printed air fresheners.</p>
-            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-                <a href="#design" class="bg-white text-blue-600 hover:bg-gray-100 px-6 py-3 rounded-md font-bold">Design Yours Now</a>
-                <a href="#products" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 px-6 py-3 rounded-md font-bold">Browse Our Collection</a>
-            </div>
-        </div>
-    </section> -->
-
     <!-- Contact Section -->
-<section id="contact" class="py-16 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">Contactează-ne</h2>
-        <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ai întrebări? Suntem aici să te ajutăm!</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-        <div>
-          <h3 class="text-xl font-bold mb-6">Informații de Contact</h3>
-          <div class="space-y-6">
-            <div class="flex items-start">
-              <i class="fas fa-envelope text-blue-600 mt-1 mr-4 text-xl"></i>
-              <div>
-                <h4 class="font-bold">Email</h4>
-                <a href="mailto:contact@aromauto.ro" class="text-gray-600 hover:underline">contact@aromauto.ro</a>
-              </div>
-            </div>
-            <div class="flex items-start">
-              <i class="fab fa-whatsapp text-green-600 mt-1 mr-4 text-xl"></i>
-              <div>
-                <h4 class="font-bold">WhatsApp</h4>
-                <a href="https://wa.me/+40756364641" target="_blank" class="text-gray-600 hover:underline">0756 364 641</a>
-              </div>
-            </div>
+    <section id="contact" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Contactează-ne</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">Ai întrebări? Suntem aici să te ajutăm!</p>
           </div>
-          <div class="mt-10">
-            <h3 class="text-xl font-bold mb-6">Urmărește-ne</h3>
-            <div class="flex space-x-4 ml-4">
-              <a href="https://facebook.com/aromauto.ro" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-              <a href="https://instagram.com/aromauto.ro" target="_blank" class="w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700">
-                <i class="fab fa-instagram"></i>
-              </a>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+              <h3 class="text-xl font-bold mb-6">Informații de Contact</h3>
+              <div class="space-y-6">
+                <div class="flex items-start">
+                  <i class="fas fa-envelope text-blue-600 mt-1 mr-4 text-xl"></i>
+                  <div>
+                    <h4 class="font-bold">Email</h4>
+                    <a href="mailto:contact@aromauto.ro" class="text-gray-600 hover:underline">contact@aromauto.ro</a>
+                  </div>
+                </div>
+                <div class="flex items-start">
+                  <i class="fab fa-whatsapp text-green-600 mt-1 mr-4 text-xl"></i>
+                  <div>
+                    <h4 class="font-bold">WhatsApp</h4>
+                    <a href="https://wa.me/+40756364641" target="_blank" class="text-gray-600 hover:underline">0756 364 641</a>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-10">
+                <h3 class="text-xl font-bold mb-6">Urmărește-ne</h3>
+                <div class="flex space-x-4 ml-4">
+                  <a href="https://facebook.com/aromauto.ro" target="_blank" class="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="https://instagram.com/aromauto.ro" target="_blank" class="w-10 h-10 bg-pink-600 text-white rounded-full flex items-center justify-center hover:bg-pink-700">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+      
+            <div>
+              <form action="https://formsubmit.co/contact@aromauto.ro" method="POST" class="bg-gray-50 p-8 rounded-xl shadow-sm">
+                <!-- Hidden inputs -->
+                <input type="hidden" name="_captcha" value="true">
+                <input type="hidden" name="_next" value="https://aromauto.ro/thank-you.html">
+                <input type="text" name="_honey" style="display:none">
+      
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nume</label>
+                    <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                  </div>
+                </div>
+                <div class="mb-6">
+                  <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subiect</label>
+                  <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                <div class="mb-6">
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mesaj</label>
+                  <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-bold">
+                  Trimite Mesaj
+                </button>
+              </form>
             </div>
           </div>
         </div>
-  
-        <div>
-          <form action="https://formsubmit.co/contact@aromauto.ro" method="POST" class="bg-gray-50 p-8 rounded-xl shadow-sm">
-            <!-- Hidden inputs -->
-            <input type="hidden" name="_captcha" value="true">
-            <input type="hidden" name="_next" value="https://aromauto.ro/thank-you.html">
-            <input type="text" name="_honey" style="display:none">
-  
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nume</label>
-                <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-              </div>
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-                <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-              </div>
-            </div>
-            <div class="mb-6">
-              <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subiect</label>
-              <input type="text" id="subject" name="subject" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500">
-            </div>
-            <div class="mb-6">
-              <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Mesaj</label>
-              <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500"></textarea>
-            </div>
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md font-bold">
-              Trimite Mesaj
-            </button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-  
+    </section>
 
     <!-- Footer -->
     <footer class="relative bg-gray-900 text-white py-12">
@@ -505,8 +455,82 @@
             <span class="text-xl font-bold"></span>
           </div>
         </div>
-      </footer>
-      
-    <script src="main.js"></script>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scent Wave Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const scents = [
+                "Arctic White", "Beach Days", "Black Ice", "Bubble Gum", "Café",
+                "City Style", "Coconut", "Forest Fruit", "Frosted Pine", "Green Apple",
+                "Jungle Fever", "Kirsche", "Lavender", "Leather", "Lemon", "Mai-Tai",
+                "Midnight Chic", "New Car", "Orange Juice", "Peach", "Piña Colada",
+                "Sport", "Strawberry", "Summer Cotton", "Supernova", "Tropical",
+                "Vanilla", "Vanillaroma", "Wild Instinct"
+            ];
+
+            const wave = document.getElementById('scentsWave');
+            
+            // Adaugă aromele de 2 ori pentru loop continuu
+            const duplicatedScents = [...scents, ...scents];
+            
+            duplicatedScents.forEach(scent => {
+                const span = document.createElement('span');
+                span.className = 'inline-block mx-8 text-2xl font-bold text-white';
+                span.textContent = scent;
+                wave.appendChild(span);
+            });
+
+            // Calculează durata animației în funcție de numărul de arome
+            const duration = scents.length * 1.8; // Ajustează pentru viteză
+            wave.style.animation = `wave ${duration}s linear infinite`;
+            
+            // Forțează repornirea animației pentru a preveni freeze-ul
+            void wave.offsetWidth;
+        });
+
+        // Image Modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById("imageModal");
+            const modalImg = document.getElementById("modalImg");
+            const closeBtn = document.querySelector(".close");
+
+            // Deschide modalul la click pe imagini
+            document.querySelectorAll(".product-card img").forEach(img => {
+                img.addEventListener("click", function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                });
+            });
+
+            // Închide modalul dacă butonul X există
+            if (closeBtn) {
+                closeBtn.onclick = () => modal.style.display = "none";
+            }
+
+            // Închide când dai click pe fundalul întunecat
+            modal.addEventListener("click", function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
 </body>
 </html>
