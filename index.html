@@ -91,6 +91,16 @@
         background: #e5e5e5;
         }
         
+        @media (max-width: 768px) {
+        #backToTopFooter {
+            position: fixed !important;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            top: auto !important;
+            z-index: 999;
+        }
+        }
+
         @media (max-width: 640px) {
         /* Rezolvă z-index pentru meniul mobil ca să nu acopere header-ul */
         #mobileMenu {
