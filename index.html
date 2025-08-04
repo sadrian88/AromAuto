@@ -291,10 +291,19 @@
               <div>
                 <h4 class="font-bold">Social Media</h4>
                 <a href="https://facebook.com/aromauto3d"
-                onclick="if (navigator.userAgent.match(/Android|iPhone|iPad/i)) { window.location = 'fb://page/aromauto3d'; return false; }"
-                class="text-blue-600 text-2xl">
-                <i class="fab fa-facebook ml-3"></i>
+                    onclick="
+                        if (/Android|iPhone|iPad/i.test(navigator.userAgent)) {
+                        window.location = 'fb://facewebmodal/f?href=https://facebook.com/aromauto3d';
+                        setTimeout(function() {
+                            window.location = 'https://facebook.com/aromauto3d';
+                        }, 2000);
+                        return false;
+                        }
+                    "
+                    class="text-blue-600 text-2xl">
+                    <i class='fab fa-facebook ml-3'></i>
                 </a>
+
 
                 <a href="https://instagram.com/aromauto.ro"
                 onclick="if (navigator.userAgent.match(/Android|iPhone|iPad/i)) { window.location = 'instagram://user?username=aromauto.ro'; return false; }"
