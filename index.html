@@ -290,9 +290,22 @@
             </div>
               <div>
                 <h4 class="font-bold">Social Media</h4>
-                <a href="https://facebook.com/aromauto.ro" class="text-blue-600 text-2xl"><i class="fab fa-facebook ml-3"></i></a>
-                <a href="https://instagram.com/aromauto.ro" class="text-pink-500 text-2xl"><i class="fab fa-instagram ml-3"></i></a>
-            </div>
+                <a 
+                href="fb://profile/your_page_id" 
+                onclick="setTimeout(() => { window.location = 'https://facebook.com/aromauto.ro'; }, 1500)" 
+                class="text-blue-600 text-2xl"
+              >
+                <i class="fab fa-facebook ml-3"></i>
+                </a>                
+                <!-- Instagram cu fallback -->
+                <a 
+                href="instagram://user?username=aromauto.ro" 
+                onclick="setTimeout(() => { window.location = 'https://instagram.com/aromauto.ro'; }, 1500)" 
+                class="text-pink-500 text-2xl"
+                >
+                <i class="fab fa-instagram ml-3"></i>
+                </a>            
+                </div>
             </div>
           </div>
         </div>
