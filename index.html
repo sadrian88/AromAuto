@@ -30,7 +30,7 @@
             }
         }
         .fade-in {
-            animation: fadeIn 1s ease-in;
+            animation: fadeIn 2s ease-in;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -57,20 +57,6 @@
         box-shadow: 0 0 15px white;
         animation: fadeIn 0.4s ease-in-out;
         }
-
-        .close {
-        position: absolute;
-        top: 20px;
-        right: 30px;
-        color: white;
-        font-size: 40px;
-        font-weight: bold;
-        cursor: pointer;
-        }
-
-        .close:hover {
-        color: #ccc;
-        }
     </style>
 </head>
 <body class="font-sans antialiased text-gray-800">
@@ -92,7 +78,7 @@
                 </div>
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-button" class="text-gray-500 hover:text-gray-900 focus:outline-none">
-                        <i class="fas fa-bars text-xl"></i>
+                        <i class="fa-solid fa-bars text-xl"></i>
                     </button>
                 </div>
             </div>
@@ -109,7 +95,7 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+        <!-- Hero Section -->
     <section id="home" class="hero-pattern">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
@@ -121,18 +107,18 @@
                         Odorizante auto imprimate 3D, create pe stilul tău. Design modern și arome care durează.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a href="#products" class="bg-teal-500 hover:bg-teal-600 text-white px-6 py-3 rounded-lg font-medium text-center transition duration-300">
-                            Descoperă colectia
+                            Descoperă colecția
                         </a>
                         <a href="#contact" class="border-2 border-gray-300 hover:border-teal-500 text-gray-700 hover:text-teal-500 px-6 py-3 rounded-lg font-medium text-center transition duration-300">
                             Comandă
                         </a>
                     </div>
                 </div>
-                </div>
             </div>
+        </div>
         <div class="text-center pb-10 scroll-down">
             <a href="#products" class="text-teal-500 hover:text-teal-600">
-                <i class="fas fa-chevron-down text-2xl"></i>
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
             </a>
         </div>
     </section>
@@ -210,7 +196,7 @@
                 
                 <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
                     <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-leaf text-2xl text-teal-500"></i>
+                        <i class="fa-solid fa-leaf text-2xl text-teal-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-3">Arome Premium</h3>
                     <p class="text-gray-600">Fiecare aromă oferă prospețime de lungă durată, de până la 4 săptămâni.</p>
@@ -218,7 +204,7 @@
                 
                 <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
                     <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-puzzle-piece text-2xl text-teal-500"></i>
+                        <i class="fa-solid fa-puzzle-piece text-2xl text-teal-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-3">Imprimare 3D de precizie</h3>
                     <p class="text-gray-600">Fiecare odorizant este imprimat 3D cu meticulozitate, folosind detalii de înaltă rezoluție pentru un aspect vizual impresionant.</p>
@@ -226,7 +212,7 @@
                 
                 <div class="bg-white p-8 rounded-xl shadow-sm hover:shadow-md transition duration-300">
                     <div class="w-16 h-16 bg-teal-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-palette text-2xl text-teal-500"></i>
+                        <i class="fa-solid fa-palette text-2xl text-teal-500"></i>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-900 mb-3">Exact cum îți dorești</h3>
                     <p class="text-gray-600">Creează-ți propria formă, alege culorile preferate și selectează combinația perfectă de arome.</p>
@@ -254,72 +240,55 @@
     </section>
     
         <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-6 pb-4">
-        <div class="max-w-7xl mx-auto px-4 sm:px-3 lg:px-4">
-            <div id="contact"></div>
-                <div class="mb-12 lg:mb-0">
-                    <h2 class="text-3xl font-extrabold text-white mb-6">
-                        Contactează-ne<span class="text-teal-500"></span>
-                    </h2>
-                    <p class="text-white mb-8">
-                        Ai întrebări? Suntem aici să te ajutăm!
-                    </p>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                          <div class="text-blue-600 text-xl mt-1 mr-4">
-                            <i class="fas fa-envelope"></i>
-                          </div>
-                          <div>
-                            <h4 class="text-white font-bold">Email</h4>
-                            <a href="mailto:contact@aromauto.ro" class="text-white hover:text-teal-400 transition duration-300">contact@aromauto.ro</a>
-                          </div>
-                        </div>
-              
-                        <div class="flex items-start">
-                          <div class="text-green-600 text-xl mt-1 mr-4">
-                            <i class="fab fa-whatsapp"></i>
-                          </div>
-                          <div>
-                            <h4 class="text-white font-bold">WhatsApp</h4>
-                            <a href="https://wa.me/40756364641" target="_blank" class="text-white hover:text-teal-400 transition duration-300">0756 364 641</a>
-                          </div>  
-                        </div>
-                    
-                        <div class="flex items-start">
-                            <div class="text-pink-600 text-xl mt-1 mr-4">
-                                <i class="fas fa-share-alt"></i>
-                              </div>
-                            <div>
-                            <h3 class="text-lg font-semibold mb-1">Social Media</h3>
-                            <div class="flex space-x-4 mb-4">
-                                <a href="https://facebook.com/aromauto3d" 
-                                    target="_blank" 
-                                    class="text-white hover:text-teal-400 transition duration-300">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://instagram.com/aromauto3d" 
-                                    target="_blank" 
-                                    class="text-white hover:text-teal-400 transition duration-300">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                            </div>
-                        </div>
+    <footer class="bg-gray-900 text-gray-400 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 id="contact" class="text-lg font-semibold mb-4">Contactează-ne</h3>
+                
+                    <div class="mb-4">
+                        <h4 class="text-gray-400 font-bold">Email</h4>
+                        <a href="mailto:contact@aromauto.ro" class="text-gray-400 hover:text-teal-400 transition duration-300">
+                            contact@aromauto.ro
+                        </a>
+                    </div>
+                
+                    <div>
+                        <h4 class="text-gray-400 font-bold">WhatsApp</h4>
+                        <a href="https://wa.me/40756364641" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-teal-400 transition duration-300">
+                            0756 364 641
+                        </a>
+                    </div>
+                </div>                
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Social Media</h3>
+                    <div class="flex space-x-4 mb-4">
+                        <a href="https://facebook.com/aromauto3d" 
+                        rel="noopener noreferrer"
+                        target="_blank" 
+                        class="text-gray-400 hover:text-teal-400 transition duration-300">
+                        <i class="fa-brands fa-facebook-f"></i>
+                        </a>
+                        <a href="https://instagram.com/aromauto3d" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        class="text-gray-400 hover:text-teal-400 transition duration-300">
+                        <i class="fa-brands fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
             </div>
-            
-            <div class="border-t border-gray-800 mt-4 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center mb-4 md:mb-0">
                     <img src="images/bradut.webp" alt="Logo" class="w-10 h-10 mr-2">
                     <span class="text-xl font-bold">Arom<span class="text-teal-500">Auto</span></span>
                 </div>
-                <p class="text-white text-sm">
+                <p class="text-gray-400 text-sm">
                     ©️ 2025 AromAuto. Toate drepturile rezervate. | <a href="politica.html" target="_blank" rel="noopener noreferrer" class="hover:text-teal-400 transition duration-300">Politica de confidențialitate</a>
-                </p>    
+                </p>
             </div>
         </div>
     </footer>
-
 
   
         <script>
@@ -329,24 +298,7 @@
             menu.classList.toggle('hidden');
         });
 
-        // FAQ accordion
-        document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', () => {
-                const answer = button.nextElementSibling;
-                const icon = button.querySelector('i');
-                
-                // Toggle answer visibility
-                answer.classList.toggle('hidden');
-                
-                // Rotate icon
-                if (answer.classList.contains('hidden')) {
-                    icon.style.transform = 'rotate(0deg)';
-                } else {
-                    icon.style.transform = 'rotate(180deg)';
-                }
-            });
-        });
-
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
