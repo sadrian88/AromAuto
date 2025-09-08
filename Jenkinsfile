@@ -32,7 +32,7 @@ pipeline {
 
     stage('Deploy to Kubernetes') {
       steps {
-        sh 'kubectl rollout restart deployment nginx-deployment'
+        sh 'kubectl rollout restart deployment aromauto-deployment'
       }
     }
   }
